@@ -1,9 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jad.abd</groupId>
 	<artifactId>mvn-project</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<name>maven project</name>
 	
 	<build>
@@ -31,7 +30,7 @@
 			   <artifactId>maven-release-plugin</artifactId>
 			   <version>2.4.2</version>
 			   <configuration>
-			      <tagNameFormat>v@{project.version}</tagNameFormat>
+			      <tagNameFormat>maven project v@{project.version}</tagNameFormat>
 			      <autoVersionSubmodules>true</autoVersionSubmodules>
 			      <releaseProfiles>releases</releaseProfiles>
 			   </configuration>
@@ -58,9 +57,16 @@
 		<repository>
 			<id>nexus-releases</id>
 			<name>nexus-releases</name>
-		<url>http://somerepo:8081/nexus/content/repositories/releases/</url>
+		<url>http://localhost:8081/nexus/content/repositories/releases</url>
 	</repository>
 	</distributionManagement>
+	
+	<scm>
+		<connection>scm:git:https://github.com/abdelJad/mvnProject.git</connection>
+		<url>scm:git:https://github.com/abdelJad/mvnProject/releases</url>
+		<developerConnection>scm:git:https://github.com/abdelJad/mvnProject.git</developerConnection>
+   
+  </scm>
 	
 	<profiles>
    <profile>
@@ -82,8 +88,8 @@
                </executions>
                <configuration>
                   <serverId>nexus-releases</serverId>
-                  <nexusUrl>http://localhost:8081/nexus/</nexusUrl>
-                  <skipStaging>true</skipStaging>
+                  <!-- <nexusUrl>http://localhost:8081/nexus/</nexusUrl> -->
+                  <skipStaging>false</skipStaging>
                </configuration>
             </plugin>
          </plugins>
