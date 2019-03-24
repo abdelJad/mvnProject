@@ -69,7 +69,6 @@
 		<connection>scm:git:https://github.com/abdelJad/mvnProject.git</connection>
 		<url>scm:git:https://github.com/abdelJad/mvnProject/releases/</url>
 		<developerConnection>scm:git:https://github.com/abdelJad/mvnProject.git</developerConnection>
-	  <tag>HEAD</tag>
   </scm>
 
 	<profiles>
