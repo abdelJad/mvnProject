@@ -2,15 +2,20 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jad.abd</groupId>
 	<artifactId>mvn-project</artifactId>
-	<version>0.0.6-SNAPSHOT</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<name>maven project</name>
+	
+	<properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
 	
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
@@ -24,19 +29,18 @@
 					</descriptorRefs>
 				</configuration>
 			</plugin>
-			
-			<!-- plugin of release  -->
+
+			<!-- plugin of release -->
 			<plugin>
-			   <groupId>org.apache.maven.plugins</groupId>
-			   <artifactId>maven-release-plugin</artifactId>
-			   <version>2.4.2</version>
-			   <configuration>
-			      <tagNameFormat>maven project v@{project.version}</tagNameFormat>
-			      <autoVersionSubmodules>true</autoVersionSubmodules>
-			      <releaseProfiles>releases</releaseProfiles>
-			   </configuration>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<tagNameFormat>v@{project.version}</tagNameFormat>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<releaseProfiles>releases</releaseProfiles>
+				</configuration>
 			</plugin>
-			
+
 		</plugins>
 		<resources>
 			<resource>
@@ -49,54 +53,53 @@
 			</resource>
 		</resources>
 	</build>
-	
+
 	<distributionManagement>
 		<snapshotRepository>
 			<id>nexus-snapshots</id>
-			<url>http://localhost:8081/nexus/content/repositories/snapshots</url>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
 		</snapshotRepository>
 		<repository>
 			<id>nexus-releases</id>
-			<name>nexus-releases</name>
-		<url>http://localhost:8081/nexus/content/repositories/releases</url>
-	</repository>
+			<url>http://localhost:8081/nexus/content/repositories/releases/</url>
+		</repository>
 	</distributionManagement>
-	
+
 	<scm>
 		<connection>scm:git:https://github.com/abdelJad/mvnProject.git</connection>
-		<url>scm:git:https://github.com/abdelJad/mvnProject/releases</url>
+		<url>scm:git:https://github.com/abdelJad/mvnProject/releases/</url>
 		<developerConnection>scm:git:https://github.com/abdelJad/mvnProject.git</developerConnection>
-   
+	  <tag>HEAD</tag>
   </scm>
-	
+
 	<profiles>
-   <profile>
-      <id>releases</id>
-      <build>
-         <plugins>
-            <plugin>
-               <groupId>org.sonatype.plugins</groupId>
-               <artifactId>nexus-staging-maven-plugin</artifactId>
-               <version>1.5.1</version>
-               <executions>
-                  <execution>
-                     <id>default-deploy</id>
-                     <phase>deploy</phase>
-                     <goals>
-                        <goal>deploy</goal>
-                     </goals>
-                  </execution>
-               </executions>
-               <configuration>
-                  <serverId>nexus-releases</serverId>
-                  <!-- <nexusUrl>http://localhost:8081/nexus/</nexusUrl> -->
-                  <skipStaging>false</skipStaging>
-               </configuration>
-            </plugin>
-         </plugins>
-      </build>
-   </profile>
-</profiles>
+		<profile>
+			<id>releases</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>1.5.1</version>
+						<executions>
+							<execution>
+								<id>default-deploy</id>
+								<phase>deploy</phase>
+								<goals>
+									<goal>deploy</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<serverId>nexus-releases</serverId>
+							 <nexusUrl>http://localhost:8081/nexus/</nexusUrl>
+							<skipStaging>true</skipStaging>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
 
 
